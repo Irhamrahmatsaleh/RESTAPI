@@ -11,7 +11,8 @@
       "migration:generate": "npx typeorm-ts-node-commonjs migration:generate src/migrations/circleMigration -d src/data-source.ts",
       "migration:run": "npx typeorm-ts-node-commonjs migration:run -d src/data-source.ts",
       "swagger": "node ./src/swagger.js",
-      "test": "jest"
+      "test": "jest",
+      "install:prod": "npm install --omit=dev"
    },
    "keywords": [],
    "author": "",
