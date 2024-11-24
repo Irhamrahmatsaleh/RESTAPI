@@ -41,11 +41,18 @@ const limiter = rateLimit({
 app.use(Express.urlencoded({ extended: false }));
 app.use(Express.json());
 // app.use(Cors())
+// app.use(Cors({
+//     origin: ['https://carnaval-olive.vercel.app', 'http://localhost:5173'],
+//     methods: ['GET', 'POST', 'PATCH', 'DELETE'],
+//     credentials: true,
+// }));
 app.use(Cors({
-    origin: ['https://carnaval-olive.vercel.app', 'http://localhost:5173'],
-    methods: ['GET', 'POST', 'PATCH', 'DELETE'],
-    credentials: true,
+    origin: ['https://carnaval-olive.vercel.app', 'http://localhost:5173'], // Hanya izinkan domain frontend
+    methods: ['GET', 'POST', 'PATCH', 'DELETE'], // Izin HTTP methods
+    allowedHeaders: ['Content-Type', 'Authorization'], // Izin header yang diperlukan
+    credentials: true, // Jika mengirim cookie atau header Authorization
 }));
+
 app.use("/api/v1", router);
 router.use(limiter);
 router.use('/api-docs', swaggerUi.serve);
