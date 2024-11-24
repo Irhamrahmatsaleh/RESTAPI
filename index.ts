@@ -49,7 +49,7 @@ app.use(Express.urlencoded({ extended: false }));
 app.use(Express.json());
 // app.use(Cors())
 app.use(Cors({
-    origin: ['https://carnaval-5z7e.vercel.app', 'http://localhost:5173'],
+    origin: ['https://carnaval-5z7e.vercel.app', 'https://b58circleapp.vercel.app', 'http://localhost:5173'],
     methods: ['GET', 'POST', 'PATCH', 'DELETE'],
     credentials: true,
 }));
