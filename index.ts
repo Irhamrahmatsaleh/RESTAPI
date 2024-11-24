@@ -42,7 +42,8 @@ app.use(Express.urlencoded({ extended: false }));
 app.use(Express.json());
 // app.use(Cors())
 app.use(Cors({
-    origin: ['https://carnaval-olive.vercel.app', 'http://localhost:5173'], // Ganti dengan domain frontend Anda
+    // origin: ['https://carnaval-olive.vercel.app', 'http://localhost:5173'], 
+    origin: '*',
     methods: ['GET', 'POST', 'PATCH', 'DELETE'],
     credentials: true,
 }));
