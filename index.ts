@@ -55,7 +55,7 @@ app.use(Express.json());
 //     credentials: true,
 // }));
 app.use(Cors({
-    origin: ['https://carnaval-olive.vercel.app', 'http://localhost:5173'], // Hanya izinkan domain frontend
+    origin: ['https://carnaval-olive.vercel.app', 'http://localhost:5173', 'https://carnaval-jm8sja5g1-irham-salehs-projects.vercel.app'], // Hanya izinkan domain frontend
     methods: ['GET', 'POST', 'PATCH', 'DELETE'], // Izin HTTP methods
     allowedHeaders: ['Content-Type', 'Authorization'], // Izin header yang diperlukan
     credentials: true, // Jika mengirim cookie atau header Authorization
