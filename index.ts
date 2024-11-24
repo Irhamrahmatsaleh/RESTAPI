@@ -1,3 +1,4 @@
+import Cors from 'cors';
 import Express from 'express';
 import rateLimit from 'express-rate-limit';
 import RedisStore from 'rate-limit-redis';
@@ -16,15 +17,10 @@ const router = Express.Router();
 // CORS Middleware - letakkan di sini
 app.use((req, res, next) => {
     res.header("Access-Control-Allow-Origin", "https://carnaval-kohl.vercel.app");
-    res.header("Access-Control-Allow-Methods", "GET, POST, PATCH, DELETE, OPTIONS");
-    res.header("Access-Control-Allow-Headers", "Content-Type, Authorization, X-Requested-With");
-    // Handle pre-flight requests
-    if (req.method === 'OPTIONS') {
-        return res.sendStatus(200);
-    }
+    res.header("Access-Control-Allow-Methods", "GET, POST, PATCH, DELETE");
+    res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
     next();
 });
-
 
 async function connectRedis() {
     await redisClient.connect();
@@ -52,11 +48,11 @@ const limiter = rateLimit({
 app.use(Express.urlencoded({ extended: false }));
 app.use(Express.json());
 // app.use(Cors())
-// app.use(Cors({
-//     origin: ['https://carnaval-kohl.vercel.app', 'http://localhost:5173'],
-//     methods: ['GET', 'POST', 'PATCH', 'DELETE'],
-//     credentials: true,
-// }));
+app.use(Cors({
+    origin: ['https://carnaval-5z7e.vercel.app', 'http://localhost:5173'],
+    methods: ['GET', 'POST', 'PATCH', 'DELETE'],
+    credentials: true,
+}));
 app.use("/api/v1", router);
 router.use(limiter);
 router.use('/api-docs', swaggerUi.serve);
