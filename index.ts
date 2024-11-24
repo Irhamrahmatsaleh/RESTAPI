@@ -14,14 +14,6 @@ import swaggerDocument from './src/swagger-generated.json';
 const port = process.env.PORT || 5000;
 export const app = Express();
 const router = Express.Router();
-router.use((req, res, next) => {
-    res.setHeader('Access-Control-Allow-Origin', 'https://carnaval-olive.vercel.app');
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PATCH, DELETE');
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-    res.setHeader('Access-Control-Allow-Credentials', 'true'); // Jika menggunakan credentials
-    next();
-});
-
 
 async function connectRedis() {
     await redisClient.connect();
@@ -49,18 +41,11 @@ const limiter = rateLimit({
 app.use(Express.urlencoded({ extended: false }));
 app.use(Express.json());
 // app.use(Cors())
-// app.use(Cors({
-//     origin: ['https://carnaval-olive.vercel.app', 'http://localhost:5173'],
-//     methods: ['GET', 'POST', 'PATCH', 'DELETE'],
-//     credentials: true,
-// }));
 app.use(Cors({
-    origin: ['https://carnaval-olive.vercel.app', 'http://localhost:5173', 'https://carnaval-jm8sja5g1-irham-salehs-projects.vercel.app'], // Hanya izinkan domain frontend
-    methods: ['GET', 'POST', 'PATCH', 'DELETE'], // Izin HTTP methods
-    allowedHeaders: ['Content-Type', 'Authorization'], // Izin header yang diperlukan
-    credentials: true, // Jika mengirim cookie atau header Authorization
+    origin: ['https://carnaval-olive.vercel.app', 'http://localhost:5173'],
+    methods: ['GET', 'POST', 'PATCH', 'DELETE'],
+    credentials: true,
 }));
-
 app.use("/api/v1", router);
 router.use(limiter);
 router.use('/api-docs', swaggerUi.serve);
