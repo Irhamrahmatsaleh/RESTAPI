@@ -14,6 +14,14 @@ import swaggerDocument from './src/swagger-generated.json';
 const port = process.env.PORT || 5000;
 export const app = Express();
 const router = Express.Router();
+router.use((req, res, next) => {
+    res.setHeader('Access-Control-Allow-Origin', 'https://carnaval-olive.vercel.app');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PATCH, DELETE');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+    res.setHeader('Access-Control-Allow-Credentials', 'true'); // Jika menggunakan credentials
+    next();
+});
+
 
 async function connectRedis() {
     await redisClient.connect();
