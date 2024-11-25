@@ -7,7 +7,7 @@
   },
   "servers": [
     {
-      "url": "https://backend-production-3388.up.railway.app"
+      "url": "https://postman-production.up.railway.app"
     },
     {
       "url": "http://localhost:5000"
